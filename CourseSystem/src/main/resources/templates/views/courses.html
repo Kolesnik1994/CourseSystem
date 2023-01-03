@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Course Service</title>
+<link rel = "stylesheet" type = "text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<h1 style ="margin-left: 650px;font-size:24px;font-style:Impact;"> LIST OF COURSES </h1>
+<br>
+<div class = "container">
+   <div class = "card">
+      <div class = "card-header"> List of Courses </div>
+      <div class = "card-body">
+        <form method = "get" th:action = "@{index}"> 
+        <label> keyword </label>
+        <input type = "text" name = "keyword" th:value = "${keyword}">
+        <button type="submit" class = "btn btn-primary"> Search</button>
+        </form>
+        <table class = "table"> 
+        <thead> 
+        <tr class="text-center"> 
+        <th> Course Id</th>
+        <th> Course Name</th>
+        <th> Course Duration</th>
+        <th> Course Description</th>
+        <th> Instructor</th>
+        <th> № of Participants</th>	
+        </thead>
+        <tbody> 
+        <tr class ="text-center" th:each="course : ${listCourses}" > 
+          <td th:text = "${course.getCourseId()}"> </td>
+          <td th:text = "${course.getCourseName()}"> </td>
+          <td th:text = "${course.getCourseDuration()}"> </td>
+          <td th:text = "${course.getCourseDescription()}"> </td>
+          <td th:text = "${course.getInstructor().getInstructorFirstName()} + '' + ${course.getInstructor().getInstructorLastName()}"> </td>
+          <td th:text = "${course.getListStudent().size()}"> </td>
+          
+          <td>
+          <a class = "btn btn-danger" onclick="confirm ('Are you sure')"
+             th:href = "@{/courses/delete(courseId = ${course.getCourseId()}, keyword = ${keyword})}"> Delete</a>
+             </td>
+              
+          <td>
+          <a class = "btn btn-success" onclick="confirm ('Are you sure')"
+             th:href = "@{/courses/update(courseId = ${course.getCourseId()})}"> Update</a>
+             </td>
+         
+        </tbody>
+        </table>
+      
+     </div>
+   </div>
+</div>
+
+</body>
+</html>
