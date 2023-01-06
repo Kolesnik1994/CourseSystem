@@ -48,7 +48,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public List<Course> findCourseBycourseName(String keyword) {
+	public List <Course> findCourseBycourseName(String keyword) {
 		return courseDao.findCourseBycourseName(keyword);
 	}
 

@@ -29,8 +29,8 @@
         <th> № of Participants</th>	
         </thead>
         <tbody> 
-        <tr class ="text-center" th:each="course : ${listCourses}" > 
-          <td th:text = "${course.getCourseId()}"> </td>
+        <tr class ="text-center" th:each="course : ${listCourses}"> 
+          <td th:text = "${course.getCourseId()}" > </td>
           <td th:text = "${course.getCourseName()}"> </td>
           <td th:text = "${course.getCourseDuration()}"> </td>
           <td th:text = "${course.getCourseDescription()}"> </td>
@@ -46,7 +46,7 @@
           <a class = "btn btn-success" onclick="confirm ('Are you sure')"
              th:href = "@{/courses/update(courseId = ${course.getCourseId()})}"> Update</a>
              </td>
-         
+         </tr>
         </tbody>
         </table>
       
