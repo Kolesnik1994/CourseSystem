@@ -1,10 +1,13 @@
 package spring.web;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,21 +30,20 @@ public class CourseController {
 	private InstructorService instructorService;
 	public CourseController(CourseService courseService, InstructorService instructorService) {
 		this.courseService = courseService;
-		this.instructorService = instructorService;
-
-		
+		this.instructorService = instructorService;	
 	}
 	
 	
 	@GetMapping ("/index")
 	public String findCourse (Model model, @RequestParam (name="keyword", defaultValue = "") String keyword ) {
 		List <Course> course = courseService.findCourseBycourseName(keyword);
+		List<Course> course2 = courseService.fetchAll();
 		model.addAttribute("listCourses", course);
+		model.addAttribute("list", course2 );
 		model.addAttribute("keyword", keyword);
 		return "views/courses";
 		
 	}
-	
 	
 	@GetMapping ("/delete")
 	public String deleteCourse (Long courseId, String keyword) {
@@ -65,6 +67,55 @@ public class CourseController {
 		return "redirect:/courses/index";
 	}
 	
+	@GetMapping ("/formCreate")
+	public String formCourses (Model model) {
+		List<Instructor> instructors = instructorService.fetchInstrucotr();
+		model.addAttribute("listInstructor", instructors);
+		model.addAttribute("course", new Course());
+		return "views/formCreate";
+		
+		
+	}
+	
+	@GetMapping ("/index/student")
+	public String coursesForStudent (Model model) {
+		Long studentId =1l;
+		List<Course> courses = courseService.fetchCourseForstudentId(studentId);
+		List<Course> other = courseService.fetchAll().stream().filter(course -> !courses.contains(course)).collect(Collectors.toList());
+		model.addAttribute("listCourses", courses);
+		model.addAttribute("otherCourses", other);
+		return "views/student";
+		
+	}
+	
+	@GetMapping ("/enroll")
+	public String enrollStudent(Long courseId) {
+		Long studentId =1l;
+		courseService.assignStudentToCourse(courseId, studentId);
+		return "redirect:/courses/index/student";
+				
+		
+	}
+	
+	
+	@GetMapping ("/index/instructor")
+	public String coursesForInstructor(Model model) {
+		Long instructorId =1l; 
+		Instructor instructor = instructorService.loadInstructorById(instructorId);
+		model.addAttribute("listCourses",  instructor.getCourses());
+		return "views/instructor";
+
+		
+	}
+	
+	@GetMapping ("/instructor")
+	public String coursesByInstructorId (Model model, Long instructorId) {
+		//Long instructorIds =1l;
+		Instructor instructor = instructorService.loadInstructorById(instructorId);
+		model.addAttribute("listCourses",  instructor.getCourses());
+		return "views/instructor";
+	
+}
 }
 	
 

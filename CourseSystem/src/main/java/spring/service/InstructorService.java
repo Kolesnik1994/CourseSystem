@@ -8,7 +8,7 @@ public interface InstructorService {
 	
 	Instructor loadInstructorById (Long instructorId);
 	
-	List<Instructor> findInstructorsByName (String name);
+	List<Instructor> findInstructorsByName (String keyword);
 	
 	Instructor loadInstrucotrByEmail(String userEmail);
 	

@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<title>Course System</title>
 <link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -10,7 +11,6 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
-<title>Course Service</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -22,15 +22,18 @@
 						<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-bs-toggle="dropdown"> Courses </a>
 						<ul class="dropdown-menu">
+
 							<li>
 								<a class="dropdown -item" th:href="@{/courses/index}">
 									Search </a>
 							</li>
+
 							<li>
 								<a class="dropdown -item" th:href="@{/courses/formCreate}">
 									New Course </a>
 							</li>
 						</ul>
+
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button"
@@ -44,67 +47,54 @@
 						</ul>
 
 					</li>
+
 				</ul>
 			</div>
 		</div>
 	</nav>
-
 	<br>
-	<br>
-
 
 	<div class="col-md-6 offset-3 mt-3">
-		<form class="form-control" method="post" th:action="@{save}"
-			th:object="${course}">
-
+		<form class="form-control" method="post"
+			th:action="@{/instructors/update}" th:object="${instructor}">
 			<div class="mb-3 mt-3">
-				<label class="form-label"> Course Id :</label>
-				<input type="number" name="courseId" class="form-control"
-					th:value="${course.getCourseId()}">
-			</div>
 
+				<label class="form-label"> Instructor Id :</label>
+				<input type="number" name="instructorId" class="form-control"
+					th:value="${instructor.getInstructorId()}">
+			</div>
 			<div class="mb-3 mt-3">
-				<label for="courseName" class="form-label"> Course Name :</label>
-				<input id="courseName" type="text" name="courseName"
-					class="form-control" th:value="${course.getCourseName()}">
-			</div>
 
+				<label class="form-label"> First Name :</label>
+				<input id="firstName" type="text" name="firstName" class="form-control"
+					th:value="${instructor.getInstructorFirstName()}">
+			</div>
 			<div class="mb-3 mt-3">
-				<label for="courseDuration" class="form-label"> Course
-					Duration :</label>
-				<input id="courseDuration" type="text" name="courseDuration"
-					class="form-control" th:value="${course.getCourseDuration()}">
-			</div>
 
+				<label class="form-label"> Last Name :</label>
+				<input id="lastName" type="text" name="lastName" class="form-control"
+					th:value="${instructor.getInstructorLastName()}">
+			</div>
+			
 			<div class="mb-3 mt-3">
-				<label for="courseDescription" class="form-label"> Course
-					Description:</label>
-				<input id="courseDescription" type="text" name="courseDescription"
-					class="form-control" th:value="${course.getCourseDescription()}">
+				<label class="form-label"> Summary :</label>
+				<input id="instructorSummary" type="text" name="instructorSummary" class="form-control"
+					th:value="${instructor.getInstructorSummary()}">
 			</div>
-
-
-			<div class="mb-3 mt-3">
-				<label class="form-label"> Instructor: </label>
-				<select th:field="${course.instructor}" name="instructor"
-					class="form-select">
-
-					<option th:each="instructor:${listInstructor}"
-						th:text="${instructor.getInstructorFirstName()} + ' ' +${instructor.getInstructorLastName()}"
-						th:value="${instructor.getInstructorId()}"></option>
-				</select>
+			
+			<div class="mb-3 mt-3" th:each ="course: ${instructor.getCourses()}">
+				<input name="courses" class="form-control" 
+					th:value="${instructor.courses[courseStat.index].getCourseId()}">
 			</div>
-
-			<div class="mb-3 mt-3" th:each="student:${course.getListStudent()}">
-				<input name="students" class="form-control"
-					th:value="${course.listStudent[studentStat.index].getStudentId()}">
+			
+			<div class ="mb-3 mt-3"> 
+			<input name ="user" class="form-control" th:field="${instructor.user}">
 			</div>
-
-			<button type="submit" class="btn btn-primary">Update</button>
+			
+			<button type ="submit" class ="btn btn-primary"> Update </button>
 		</form>
 
 	</div>
-
 
 </body>
 </html>

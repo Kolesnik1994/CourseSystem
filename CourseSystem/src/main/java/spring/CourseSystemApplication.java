@@ -14,8 +14,8 @@ public class CourseSystemApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CourseSystemApplication.class, args);
-	      }
 	
+	  }
 	
 	}
 		
