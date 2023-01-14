@@ -84,7 +84,7 @@
 					class="form-select">
 
 					<option th:each="instructor:${listInstructor}"
-						th:text="${instructor.getInstructorFirstName()} + ' ' +${instructor.getInstructorLastName()}"
+						th:text="${instructor.getFirstName()} + ' ' +${instructor.getLastName()}"
 						th:value="${instructor.getInstructorId()}"></option>
 				</select>
 			</div>

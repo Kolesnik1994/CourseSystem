@@ -74,8 +74,8 @@
 				<tbody>
 					<tr class="text-center" th:each="instructor: ${listInstructors}">
 						<td th:text="${instructor.getInstructorId()}"></td>
-						<td th:text="${instructor.getInstructorFirstName()}"></td>
-						<td th:text="${instructor.getInstructorLastName()}"></td>
+						<td th:text="${instructor.getFirstName()}"></td>
+						<td th:text="${instructor.getLastName()}"></td>
 						<td th:text="${instructor.getInstructorSummary()}"></td>
 						<td><a onclick="confirm ('Are you sure')"
 								class="btn btn-danger" th:href="@{/instructors/delete(instructorId=${instructor.getInstructorId()}, keyword=${keyword})}">

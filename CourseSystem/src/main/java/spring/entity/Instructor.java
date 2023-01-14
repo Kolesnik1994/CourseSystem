@@ -47,13 +47,17 @@ public class Instructor {
 	
 	public Instructor () {}
 	
-	public Instructor(String instructorFirstName, String instructorLastName, String instructorSummary, User user) {
-		this.firstName = instructorFirstName;
-		this.lastName = instructorLastName;
+	
+	
+	public Instructor(String firstName, String lastName, String instructorSummary, User user) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.instructorSummary = instructorSummary;
 		this.user = user;
 	}
-	
+
+
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(instructorId, firstName, lastName, instructorSummary);
@@ -69,6 +73,9 @@ public class Instructor {
 		return instructorId.equals(instructor.instructorId) && Objects.equals(firstName, instructor.firstName) && Objects.equals(lastName, instructor.lastName) && Objects.equals(instructorSummary, instructor.instructorSummary);
 	}
 
+
+	
+	
 	public Long getInstructorId() {
 		return instructorId;
 	}
@@ -77,45 +84,64 @@ public class Instructor {
 		this.instructorId = instructorId;
 	}
 
-	public String getInstructorFirstName() {
+
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setInstructorFirstName(String instructorFirstName) {
-		this.firstName = instructorFirstName;
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getInstructorLastName() {
+
+	public String getLastName() {
 		return lastName;
 	}
 
-	public void setInstructorLastName(String instructorLastName) {
-		this.lastName = instructorLastName;
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
+
+
 
 	public String getInstructorSummary() {
 		return instructorSummary;
 	}
 
+
+
 	public void setInstructorSummary(String instructorSummary) {
 		this.instructorSummary = instructorSummary;
 	}
+
+
 
 	public Set<Course> getCourses() {
 		return courses;
 	}
 
+
+
 	public void setCourses(Set<Course> courses) {
 		this.courses = courses;
 	}
+
+
 
 	public User getUser() {
 		return user;
 	}
 
+
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+
 
 	@Override
 	public String toString() {

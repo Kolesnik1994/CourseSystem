@@ -35,8 +35,8 @@ public class InstructorDaoTest extends AbstractTest{
 	void testFindInstructorsByEmail() {
 		Instructor expectedInstructor = new Instructor();
 		expectedInstructor.setInstructorId(1l);
-		expectedInstructor.setInstructorFirstName("Jorda");
-		expectedInstructor.setInstructorLastName("Ddd");
+		expectedInstructor.setFirstName("Jord");
+		expectedInstructor.setLastName("Kush");
 		expectedInstructor.setInstructorSummary("Method");
 		
 		

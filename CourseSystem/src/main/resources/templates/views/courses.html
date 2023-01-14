@@ -88,7 +88,7 @@
 							<td th:text="${course.getCourseDuration()}"></td>
 							<td th:text="${course.getCourseDescription()}"></td>
 							<td
-								th:text="${course.getInstructor().getInstructorFirstName()} + '' + ${course.getInstructor().getInstructorLastName()}">
+								th:text="${course.getInstructor().getFirstName()} + '' + ${course.getInstructor().getLastName()}">
 							</td>
 							<td th:text="${course.getListStudent().size()}"></td>
 
@@ -129,7 +129,7 @@
 							<td th:text="${course.getCourseDuration()}"></td>
 							<td th:text="${course.getCourseDescription()}"></td>
 							<td
-								th:text="${course.getInstructor().getInstructorFirstName()} + '' + ${course.getInstructor().getInstructorLastName()}">
+								th:text="${course.getInstructor().getFirstName()} + '' + ${course.getInstructor().getLastName()}">
 							</td>
 							<td th:text="${course.getListStudent().size()}"></td>
 
