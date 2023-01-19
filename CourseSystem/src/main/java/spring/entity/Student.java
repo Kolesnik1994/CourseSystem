@@ -36,7 +36,7 @@ public class Student {
 	
 	@Basic
 	@Column (name = "level", nullable = false, length = 45)
-	private String studentLevel;
+	private String level;
 	
 	@ManyToMany (mappedBy = "listStudent", fetch = FetchType.LAZY)
 	private Set <Course> courses = new HashSet<>();
@@ -47,16 +47,16 @@ public class Student {
 	
 	public Student () {}
 	
-	public Student(String studentFirstName, String studentLastName, String studentLevel, User user) {
-		this.firstName = studentFirstName;
-		this.lastName = studentLastName;
-		this.studentLevel = studentLevel;
+	public Student(String firstName, String lastName, String level, User user) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.level = level;
 		this.user = user;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(studentId, firstName, lastName, studentLevel);
+		return Objects.hash(studentId, firstName, lastName, level);
 	}
 
 	@Override
@@ -66,9 +66,10 @@ public class Student {
 		if (obj == null || getClass() != obj.getClass())
 			return false;
 		Student student = (Student) obj;
-		return studentId.equals(student.studentId) && Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName) && Objects.equals(studentLevel, student.studentLevel);
+		return studentId.equals(student.studentId) && Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName) && Objects.equals(level, student.level);
 	}
 
+	
 	public Long getStudentId() {
 		return studentId;
 	}
@@ -77,28 +78,28 @@ public class Student {
 		this.studentId = studentId;
 	}
 
-	public String getStudentFirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setStudentFirstName(String studentFirstName) {
-		this.firstName = studentFirstName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getStudentLastName() {
+	public String getLastName() {
 		return lastName;
 	}
 
-	public void setStudentLastName(String studentLastName) {
-		this.lastName = studentLastName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getStudentLevel() {
-		return studentLevel;
+	public String getLevel() {
+		return level;
 	}
 
-	public void setStudentLevel(String studentLevel) {
-		this.studentLevel = studentLevel;
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 	public Set<Course> getCourses() {
@@ -120,7 +121,7 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [studentId=" + studentId + ", studentFirstName=" + firstName + ", studentLastName="
-				+ lastName + ", studentLevel=" + studentLevel + "]";
+				+ lastName + ", studentLevel=" + level + "]";
 	}
 	
 }

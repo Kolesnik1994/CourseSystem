@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Course Service</title>
+<title>Course System </title>
 <link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -13,7 +13,8 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" th:href="@{/courses/index}"> Home</a>
 			<div class="collapse navbar-collapse" id="mynavbar">
@@ -22,19 +23,17 @@
 						<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-bs-toggle="dropdown"> Courses </a>
 						<ul class="dropdown-menu">
-
 							<li>
 								<a class="dropdown -item" th:href="@{/courses/index}">
 									Search </a>
 							</li>
-
 							<li>
 								<a class="dropdown -item" th:href="@{/courses/formCreate}">
 									New Course </a>
 							</li>
 						</ul>
-
 					</li>
+					
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-bs-toggle="dropdown"> Instructors </a>
@@ -44,17 +43,34 @@
 								<a class="dropdown -item" th:href="@{/instructors/index}">
 									Search </a>
 							</li>
+							<li>
+								<a class="dropdown -item" th:href="@{/instructors/formCreate}">
+									New Instructor </a>
+							</li>
 						</ul>
 
 					</li>
-
+					
+					
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown"> Students </a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown -item" th:href="@{/students/index}">
+									Search </a>
+							</li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<br>
+	<br>
+	
 	<div class="container mt-3">
-		<div class="card-header">List of Instructors</div>
+		<div class="card-header">List of Students</div>
 		<div class="card-body">
 			<form method="get" th:action="@{index}">
 				<label> Keyword</label>
@@ -65,29 +81,22 @@
 				<thead>
 
 					<tr class="text-center">
-						<th>Instructor Id</th>
-						<th>Instructor First Name</th>
-						<th>Instructor Last Name</th>
-						<th>Instructor Summary</th>
+						<th>Student Id</th>
+						<th>Student First Name</th>
+						<th>Student Last Name</th>
+						<th>Student Level</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="text-center" th:each="instructor: ${listInstructors}">
-						<td th:text="${instructor.getInstructorId()}"></td>
-						<td th:text="${instructor.getFirstName()}"></td>
-						<td th:text="${instructor.getLastName()}"></td>
-						<td th:text="${instructor.getInstructorSummary()}"></td>
-						<td><a onclick="confirm ('Are you sure')"
-								class="btn btn-danger" th:href="@{/instructors/delete(instructorId=${instructor.getInstructorId()}, keyword=${keyword})}">
-								Delete </a>
-						</td>
-						
+					<tr class="text-center" th:each="student: ${listStudents}">
+						<td th:text="${student.getStudentId()}"></td>
+						<td th:text="${student.getStudentFirstName()}"></td>
+						<td th:text="${student.getStudentLastName()}"></td>
+						<td th:text="${student.getStudentLevel()}"></td> 
 						<td> 
-						<a class ="btn btn-info" th:href="@{/courses/instructor(instructorId=${instructor.getInstructorId()})}"> Courses  </a>
-					
+						<a onclick="confirm ('Are you sure')" class="btn btn-danger"
+						th:href="@{students/delete(studentId=${student.getStudentId()}, keyword=${keyword})}"> Delete </a>
 						</td>
-
-
 					</tr>
 				</tbody>
 			</table>
@@ -96,5 +105,7 @@
 
 
 	</div>
+	
+
 </body>
 </html>

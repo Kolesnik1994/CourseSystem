@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Course System</title>
+<link rel="stylesheet" type="text/css"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/courses/index}"> Home</a>
+			<div class="collapse navbar-collapse" id="mynavbar">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" role="button"
+						data-bs-toggle="dropdown"> Courses </a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown -item" th:href="@{/courses/index}">
+									Search </a></li>
+							<li><a class="dropdown -item"
+								th:href="@{/courses/formCreate}"> New Course </a></li>
+						</ul></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" role="button"
+						data-bs-toggle="dropdown"> Instructors </a>
+						<ul class="dropdown-menu">
+
+							<li><a class="dropdown -item"
+								th:href="@{/instructors/index}"> Search </a></li>
+							<li><a class="dropdown -item"
+								th:href="@{/instructors/formCreate}"> New Instructor </a></li>
+						</ul></li>
+
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" role="button"
+						data-bs-toggle="dropdown"> Students </a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown -item" th:href="@{/students/index}">
+									Search </a></li>
+						</ul></li>
+				</ul>
+
+
+			</div>
+		</div>
+	</nav>
+	<br>
+	<br>
+
+	<div class="col-md-6 offset-3 mt-3">
+		<form class="form-control" method="post"
+			th:action="@{/students/update}" th:object="${student}">
+			<div class="mb-3 mt-3">
+				<label class="form-label"> Student Id: </label>
+				<input type="number" name="studentId" class="form-control"
+					th:value="${student.getStudentId()}" readonly="readonly">
+			</div>
+
+			<div class="mb-3 mt-3">
+				<label for="firstName" class="form-label"> Student Name: </label>
+				<input id="firstName" type="text" name="firstName"
+					class="form-control" th:value="${student.getFirstName()}">
+			</div>
+
+			<div class="mb-3 mt-3">
+				<label for="lastName" class="form-label"> Student Last Name:
+				</label>
+				<input id="lastName" type="text" name="lastName"
+					class="form-control" th:value="${student.getLastName()}">
+			</div>
+
+			<div class="mb-3 mt-3">
+				<label for=" level" class="form-label"> Student Level: </label>
+				<input id="level" type="text" name="level" class="form-control"
+					th:value="${student.getLevel()}">
+			</div>
+			
+			<div class="mb-3 mt-3" th:each ="course:${student.getCourses()}">
+				<input name="courses" class="form-control"
+					th:value="${student.courses[courseStat.index].getCourseId()}">
+			</div>
+			
+			<div class="mb-3 mt-3" th:each ="course:${student.getCourses()}">
+				<input name="user" class="form-control" th:field="${student.user}">
+			</div>
+
+<button type="submit" class="btn btn-primary"> Update </button>
+
+		</form>
+	</div>
+
+</body>
+</html>

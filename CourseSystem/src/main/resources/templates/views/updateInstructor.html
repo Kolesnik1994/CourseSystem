@@ -55,8 +55,7 @@
 	<br>
 
 	<div class="col-md-6 offset-3 mt-3">
-		<form class="form-control" method="post"
-			th:action="@{/instructors/update}" th:object="${instructor}">
+		<form class="form-control" method="post" th:action="@{/instructors/update}" th:object="${instructor}">
 			<div class="mb-3 mt-3">
 
 				<label class="form-label"> Instructor Id :</label>
@@ -84,7 +83,7 @@
 			
 			<div class="mb-3 mt-3" th:each ="course: ${instructor.getCourses()}">
 				<input name="courses" class="form-control" 
-					th:value="${instructor.courses[courseStat.index].getCourseId()}">
+					th:value="${instructor.courses[courseStart.index].getCourseId()}">
 			</div>
 			
 			<div class ="mb-3 mt-3"> 

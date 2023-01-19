@@ -35,9 +35,9 @@ public class StudentDaoTest extends AbstractTest {
 		
 		Student student = new Student();
 		student.setStudentId(1L);
-		student.setStudentFirstName("Paul");
-		student.setStudentLastName("Majaha");
-		student.setStudentLevel("Pro");
+		student.setFirstName("Paul");
+		student.setLastName("Majaha");
+		student.setLevel("Pro");
 		
 		Student student1 = studentDao.findStudentByuserEmail("user@gmail.com");
 		

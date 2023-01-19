@@ -47,8 +47,6 @@ public class Instructor {
 	
 	public Instructor () {}
 	
-	
-	
 	public Instructor(String firstName, String lastName, String instructorSummary, User user) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -73,9 +71,6 @@ public class Instructor {
 		return instructorId.equals(instructor.instructorId) && Objects.equals(firstName, instructor.firstName) && Objects.equals(lastName, instructor.lastName) && Objects.equals(instructorSummary, instructor.instructorSummary);
 	}
 
-
-	
-	
 	public Long getInstructorId() {
 		return instructorId;
 	}
@@ -99,49 +94,33 @@ public class Instructor {
 		return lastName;
 	}
 
-
-
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-
 
 	public String getInstructorSummary() {
 		return instructorSummary;
 	}
 
-
-
 	public void setInstructorSummary(String instructorSummary) {
 		this.instructorSummary = instructorSummary;
 	}
-
-
 
 	public Set<Course> getCourses() {
 		return courses;
 	}
 
-
-
 	public void setCourses(Set<Course> courses) {
 		this.courses = courses;
 	}
-
-
 
 	public User getUser() {
 		return user;
 	}
 
-
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
 
 	@Override
 	public String toString() {

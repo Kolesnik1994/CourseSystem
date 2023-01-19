@@ -70,7 +70,7 @@ public class InstructorController {
 	User user = userService.loadUserByuserEmail(instructor.getUser().getUserEmail());
 	if (user !=null) 
 		bindingResult.rejectValue ("user.userEmail", null, "Acount already register with that email");
-	if (bindingResult.hasErrors()) return "views/updateInstructor";
+	if (bindingResult.hasErrors()) return "views/instructorCreate";
 	instructorService.createInstructor(instructor.getFirstName(), instructor.getLastName(),instructor.getInstructorSummary(), 
 		                                   instructor.getUser().getUserEmail(), instructor.getUser().getUserPassword());
 		
