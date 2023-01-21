@@ -13,7 +13,8 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+	
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" th:href="@{/courses/index}"> Home</a>
 			<div class="collapse navbar-collapse" id="mynavbar">
@@ -22,19 +23,17 @@
 						<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-bs-toggle="dropdown"> Courses </a>
 						<ul class="dropdown-menu">
-
 							<li>
 								<a class="dropdown -item" th:href="@{/courses/index}">
 									Search </a>
 							</li>
-
 							<li>
 								<a class="dropdown -item" th:href="@{/courses/formCreate}">
 									New Course </a>
 							</li>
 						</ul>
-
 					</li>
+					
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-bs-toggle="dropdown"> Instructors </a>
@@ -44,14 +43,37 @@
 								<a class="dropdown -item" th:href="@{/instructors/index}">
 									Search </a>
 							</li>
+							<li>
+								<a class="dropdown -item" th:href="@{/instructors/formCreate}">
+									New Instructor </a>
+							</li>
 						</ul>
 
 					</li>
-
+					
+					
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown"> Students </a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown -item" th:href="@{/students/index}">
+									Search </a>
+							</li>
+							<li>
+								<a class="dropdown -item" th:href="@{/students/formCreate}">
+									New Student </a>
+							</li>
+						</ul>
+						
+					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	<br>
+	<br>
+	
 	<br>
 	<div class="container mt-3">
 		<div class="card-header">List of Instructors</div>

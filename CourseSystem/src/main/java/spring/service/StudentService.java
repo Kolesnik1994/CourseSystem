@@ -8,7 +8,7 @@ public interface StudentService {
 	
 	Student loadStudentById (Long id);
 	
-	List<Student> findStudentByName (String name);
+	List<Student> findStudentByName (String keyword);
 	
 	Student loadStudentByEmail (String email);
 	

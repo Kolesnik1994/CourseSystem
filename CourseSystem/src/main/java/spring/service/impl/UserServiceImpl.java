@@ -1,5 +1,6 @@
 package spring.service.impl;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +17,13 @@ public class UserServiceImpl implements UserService{
 	private UserDao userDao;
 	
 	private RoleDao roleDao;
+	
+	private PasswordEncoder	passwordEncoder;
 
-	public UserServiceImpl(UserDao userDao, RoleDao roleDao) {
+	public UserServiceImpl(UserDao userDao, RoleDao roleDao, PasswordEncoder passwordEncoder) {
 		this.userDao = userDao;
 		this.roleDao = roleDao;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
@@ -29,17 +33,17 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User createUser(String userEmail, String userPassword) {
+		User user = loadUserByuserEmail (userEmail);
+		if (user != null) throw new RuntimeException("User with email :" + userEmail + "already exist") ;
+		String encode = passwordEncoder.encode(userPassword);
 		return userDao.save(new User (userEmail, userPassword));
 	}
 
 	@Override
 	public void assignRoleToUser(String userEmail, String roleName) {
-		
 		User user = loadUserByuserEmail (userEmail);
 		Role role = roleDao.findByroleName(roleName);
 		user.assignRoleToUser(role);
 		
-		
 	}
-
 }

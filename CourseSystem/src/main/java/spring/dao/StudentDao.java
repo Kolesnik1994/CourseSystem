@@ -10,8 +10,8 @@ import spring.entity.Student;
 
 public interface StudentDao extends JpaRepository <Student, Long> {
 	
-	@Query (value = "select s from Student as s where s.firstName like %:firstName% or s.lastName like %:lastName%", nativeQuery = true)
-	List <Student> findByfirstName( @Param ("firstName") String firstName);
+	@Query (value ="select s from Student as s where s.firstName like %:firstName% or s.lastName like %:firstName%")
+	List <Student> findByfirstName(String firstName);
 	
 	@Query (value = "select s from Student as s where s.user.userEmail =:userEmail")
 	Student findStudentByuserEmail ( @Param ("userEmail") String userEmail);

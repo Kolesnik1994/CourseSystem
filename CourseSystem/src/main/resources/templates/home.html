@@ -14,7 +14,6 @@
 </head>
 <body>
 
-
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" th:href="@{/courses/index}"> Home</a>
@@ -74,48 +73,10 @@
 	</nav>
 	<br>
 	<br>
-
 	
-	<div class="col-md-6 offset-3 mt-3">
-		<form class="form-control" method="post" th:action="@{/students/save}">
-			
-			<div class="mb-3 mt-3">
-
-				<label for="firstName" class="form-label">Student First Name :</label>
-				<input id="firstName" type="text" name="firstName" class="form-control"
-					th:field="*{student.firstName}" required>
-			</div>
-			<div class="mb-3 mt-3">
-
-				<label for ="lastName" class="form-label">Student Last Name :</label>
-				<input id="lastName" type="text" name="lastName" class="form-control"
-					th:value="${student.lastName}" required>
-			</div>
-			
-			<div class="mb-3 mt-3">
-				<label for="level" class="form-label">Student Level :</label>
-				<input id="level" type="text" name="level" class="form-control"
-					th:value="${student.level}" required>
-			</div>
-			
-			<div class="mb-3 mt-3">
-				<label for="userEmail" class="form-label"> Email :</label>
-				<input id="userEmail" type="email" name="userEmail" class="form-control"
-					th:field="*{student.user.userEmail}" required>
-					<span th:errors="${student.user.userEmail}"> </span>
-			</div>
-			
-			<div class="mb-3 mt-3">
-				<label for="userPassword" class="form-label"> Password :</label>
-				<input id="userPassword" type="text" name="userPassword" class="form-control"
-					th:field="*{student.user.userPassword}" required>
-			</div>
-			
-			<button type ="submit" class ="btn btn-primary"> Update </button>
-		</form>
-
-	</div>
 	
+
+
 
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Course System </title>
 <link rel="stylesheet" type="text/css"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"	
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
 <script
@@ -60,7 +60,12 @@
 								<a class="dropdown -item" th:href="@{/students/index}">
 									Search </a>
 							</li>
+							<li>
+								<a class="dropdown -item" th:href="@{/students/formCreate}">
+									New Student </a>
+							</li>
 						</ul>
+						
 					</li>
 				</ul>
 			</div>
@@ -70,7 +75,7 @@
 	<br>
 	
 	<div class="container mt-3">
-		<div class="card-header">List of Students</div>
+		<div class="card-header">Search Students</div>
 		<div class="card-body">
 			<form method="get" th:action="@{index}">
 				<label> Keyword</label>
@@ -90,9 +95,39 @@
 				<tbody>
 					<tr class="text-center" th:each="student: ${listStudents}">
 						<td th:text="${student.getStudentId()}"></td>
-						<td th:text="${student.getStudentFirstName()}"></td>
-						<td th:text="${student.getStudentLastName()}"></td>
-						<td th:text="${student.getStudentLevel()}"></td> 
+						<td th:text="${student.getFirstName()}"></td>
+						<td th:text="${student.getLastName()}"></td>
+						<td th:text="${student.getLevel()}"></td> 
+						<td> 
+						<a onclick="confirm ('Are you sure')" class="btn btn-danger"
+						th:href="@{students/delete(studentId=${student.getStudentId()}, keyword=${keyword})}"> Delete </a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+	
+	<div class="container mt-3">
+		<div class="card-header">List of Students</div>
+		<div class="card-body">
+			<table class="table mt-3">
+				<thead>
+
+					<tr class="text-center">
+						<th>Student Id</th>
+						<th>Student First Name</th>
+						<th>Student Last Name</th>
+						<th>Student Level</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="text-center" th:each="student: ${list}">
+						<td th:text="${student.getStudentId()}"></td>
+						<td th:text="${student.getFirstName()}"></td>
+						<td th:text="${student.getLastName()}"></td>
+						<td th:text="${student.getLevel()}"></td> 
 						<td> 
 						<a onclick="confirm ('Are you sure')" class="btn btn-danger"
 						th:href="@{students/delete(studentId=${student.getStudentId()}, keyword=${keyword})}"> Delete </a>

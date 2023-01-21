@@ -29,8 +29,10 @@ public class StudentController {
 	@GetMapping ("/index")
 	public String getStudents (Model model, @RequestParam (name="keyword", defaultValue ="") String keyword) {
 		List <Student> students = studentService.findStudentByName(keyword);
+		List <Student> students2 = studentService.fetchStudent();
 		model.addAttribute("listStudents", students);
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("list", students2);
 		return "students/students";
 			
 	}

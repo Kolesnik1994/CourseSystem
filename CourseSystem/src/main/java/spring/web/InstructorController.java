@@ -34,7 +34,7 @@ public class InstructorController {
 		List<Instructor> instructors = instructorService.findInstructorsByName(keyword);
 		model.addAttribute(	"listInstructors", instructors);
 		model.addAttribute("keyword", keyword);
-		return "views/instructorList";
+		return "instractor/instructorList";
 		
 	}
 	
@@ -49,7 +49,7 @@ public class InstructorController {
 	public String updateInstructor (Model model, Long instructorId) {
 		Instructor instructor = instructorService.loadInstructorById(instructorId);
 		model.addAttribute("instructor", instructor);
-		return "views/updateInstructor";
+		return "instractor/updateInstructor";
 	}
 	
 	@PostMapping ("/update")
@@ -61,7 +61,7 @@ public class InstructorController {
 	@GetMapping ("/formCreate")
 	public String createInstructor(Model model) {
 		model.addAttribute("instructor", new Instructor());
-		return "views/instructorCreate";
+		return "instractor/instructorCreate";
 	
 	}
 	

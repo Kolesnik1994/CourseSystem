@@ -13,48 +13,68 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" th:href="@{/courses/index}"> Home</a>
 			<div class="collapse navbar-collapse" id="mynavbar">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
-						data-bs-toggle="dropdown"> Courses </a>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown"> Courses </a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown -item" th:href="@{/courses/index}">
-									Search </a></li>
-							<li><a class="dropdown -item"
-								th:href="@{/courses/formCreate}"> New Course </a></li>
-						</ul></li>
-
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
-						data-bs-toggle="dropdown"> Instructors </a>
+							<li>
+								<a class="dropdown -item" th:href="@{/courses/index}">
+									Search </a>
+							</li>
+							<li>
+								<a class="dropdown -item" th:href="@{/courses/formCreate}">
+									New Course </a>
+							</li>
+						</ul>
+					</li>
+					
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown"> Instructors </a>
 						<ul class="dropdown-menu">
 
-							<li><a class="dropdown -item"
-								th:href="@{/instructors/index}"> Search </a></li>
-							<li><a class="dropdown -item"
-								th:href="@{/instructors/formCreate}"> New Instructor </a></li>
-						</ul></li>
+							<li>
+								<a class="dropdown -item" th:href="@{/instructors/index}">
+									Search </a>
+							</li>
+							<li>
+								<a class="dropdown -item" th:href="@{/instructors/formCreate}">
+									New Instructor </a>
+							</li>
+						</ul>
 
-
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
-						data-bs-toggle="dropdown"> Students </a>
+					</li>
+					
+					
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown"> Students </a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown -item" th:href="@{/students/index}">
-									Search </a></li>
-						</ul></li>
+							<li>
+								<a class="dropdown -item" th:href="@{/students/index}">
+									Search </a>
+							</li>
+							<li>
+								<a class="dropdown -item" th:href="@{/students/formCreate}">
+									New Student </a>
+							</li>
+						</ul>
+						
+					</li>
 				</ul>
-
-
 			</div>
 		</div>
 	</nav>
 	<br>
 	<br>
+
 
 	<div class="col-md-6 offset-3 mt-3">
 		<form class="form-control" method="post"
@@ -84,12 +104,12 @@
 					th:value="${student.getLevel()}">
 			</div>
 			
-			<div class="mb-3 mt-3" th:each ="course:${student.getCourses()}">
+			<div class="mb-3 mt-3" th:each ="course:${student.getCourses()}" style="display:none;">
 				<input name="courses" class="form-control"
 					th:value="${student.courses[courseStat.index].getCourseId()}">
 			</div>
 			
-			<div class="mb-3 mt-3" th:each ="course:${student.getCourses()}">
+			<div class="mb-3 mt-3" th:each ="course:${student.getCourses()}" style="display:none;">
 				<input name="user" class="form-control" th:field="${student.user}">
 			</div>
 

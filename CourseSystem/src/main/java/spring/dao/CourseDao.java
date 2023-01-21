@@ -10,6 +10,7 @@ import spring.entity.Course;
 
 public interface CourseDao extends JpaRepository <Course, Long> {
 	
+	
 	List <Course> findCourseBycourseName (String keyword);
 	
     @Query (nativeQuery=true, value = "select * from courses as c where c.course_id in (select e.course_id from enrolled_in as e where e.student_id = :studentId)")

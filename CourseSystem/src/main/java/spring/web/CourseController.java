@@ -41,7 +41,7 @@ public class CourseController {
 		model.addAttribute("listCourses", course);
 		model.addAttribute("list", course2 );
 		model.addAttribute("keyword", keyword);
-		return "views/courses";
+		return "course/courses";
 		
 	}
 	
@@ -58,7 +58,7 @@ public class CourseController {
 		List <Instructor> instructors = instructorService.fetchInstrucotr();
 		model.addAttribute("course", course);
 		model.addAttribute("listInstructor", instructors);
-		return "views/update";
+		return "course/update";
 	}
 	
 	@PostMapping ("/save")
@@ -72,7 +72,7 @@ public class CourseController {
 		List<Instructor> instructors = instructorService.fetchInstrucotr();
 		model.addAttribute("listInstructor", instructors);
 		model.addAttribute("course", new Course());
-		return "views/formCreate";
+		return "course/formCreate";
 		
 		
 	}
@@ -84,7 +84,7 @@ public class CourseController {
 		List<Course> other = courseService.fetchAll().stream().filter(course -> !courses.contains(course)).collect(Collectors.toList());
 		model.addAttribute("listCourses", courses);
 		model.addAttribute("otherCourses", other);
-		return "views/student";
+		return "course/student";
 		
 	}
 	
@@ -103,7 +103,7 @@ public class CourseController {
 		Long instructorId =1l; 
 		Instructor instructor = instructorService.loadInstructorById(instructorId);
 		model.addAttribute("listCourses",  instructor.getCourses());
-		return "views/instructor";
+		return "course/instructor";
 
 		
 	}
@@ -113,7 +113,7 @@ public class CourseController {
 		//Long instructorIds =1l;
 		Instructor instructor = instructorService.loadInstructorById(instructorId);
 		model.addAttribute("listCourses",  instructor.getCourses());
-		return "views/instructor";
+		return "course/instructor";
 	
 }
 }

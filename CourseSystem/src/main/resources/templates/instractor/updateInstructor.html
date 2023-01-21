@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Course Service</title>
+<title>Course System</title>
 <link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -13,6 +13,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+	
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" th:href="@{/courses/index}"> Home</a>
@@ -32,6 +33,7 @@
 							</li>
 						</ul>
 					</li>
+					
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-bs-toggle="dropdown"> Instructors </a>
@@ -48,6 +50,23 @@
 						</ul>
 
 					</li>
+					
+					
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown"> Students </a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown -item" th:href="@{/students/index}">
+									Search </a>
+							</li>
+							<li>
+								<a class="dropdown -item" th:href="@{/students/formCreate}">
+									New Student </a>
+							</li>
+						</ul>
+						
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -55,46 +74,46 @@
 	<br>
 	<br>
 
-<div class="col-md-6 offset-3 mt-3">
-		<form class="form-control" method="post" th:action="@{/instructors/save}">
-			
+	<div class="col-md-6 offset-3 mt-3">
+		<form class="form-control" method="post" th:action="@{/instructors/update}" th:object="${instructor}">
 			<div class="mb-3 mt-3">
 
-				<label for="firstName" class="form-label">Instructor First Name :</label>
+				<label class="form-label"> Instructor Id :</label>
+				<input type="number" name="instructorId" class="form-control"
+					th:value="${instructor.getInstructorId()}">
+			</div>
+			
+			<div class="mb-3 mt-3">
+				<label for="firstName" class="form-label"> First Name :</label>
 				<input id="firstName" type="text" name="firstName" class="form-control"
-					th:field="*{instructor.firstName}" required>
+					th:value="${instructor.getFirstName()}">
 			</div>
 			<div class="mb-3 mt-3">
 
-				<label for ="lastName" class="form-label">Instructor Last Name :</label>
+				<label for ="lastName" class="form-label"> Last Name :</label>
 				<input id="lastName" type="text" name="lastName" class="form-control"
-					th:value="${instructor.lastName}" required>
+					th:value="${instructor.getLastName()}">
 			</div>
 			
 			<div class="mb-3 mt-3">
-				<label for="instructorSummary" class="form-label">Instructor Summary :</label>
+				<label for="instructorSummary" class="form-label"> Summary :</label>
 				<input id="instructorSummary" type="text" name="instructorSummary" class="form-control"
-					th:value="${instructor.instructorSummary}" required>
+					th:value="${instructor.getInstructorSummary()}">
 			</div>
 			
-			<div class="mb-3 mt-3">
-				<label for="userEmail" class="form-label"> Email :</label>
-				<input id="userEmail" type="email" name="userEmail" class="form-control"
-					th:field="*{instructor.user.userEmail}" required>
-					<span th:errors="${instructor.user.userEmail}"> </span>
+			<div class="mb-3 mt-3" th:each ="course: ${instructor.getCourses()}" style="display:none">
+				<input name="courses" class="form-control" 
+					th:value="${instructor.courses[courseStat.index].getCourseId()}">
 			</div>
 			
-			<div class="mb-3 mt-3">
-				<label for="userPassword" class="form-label"> Password :</label>
-				<input id="userPassword" type="text" name="userPassword" class="form-control"
-					th:field="*{instructor.user.userPassword}" required>
+			<div class ="mb-3 mt-3" style="display:none"> 
+			<input name ="user" class="form-control" th:field="${instructor.user}">
 			</div>
 			
 			<button type ="submit" class ="btn btn-primary"> Update </button>
 		</form>
 
 	</div>
-
 
 </body>
 </html>
