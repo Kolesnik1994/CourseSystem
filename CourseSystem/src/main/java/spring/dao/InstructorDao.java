@@ -10,10 +10,13 @@ import spring.entity.Instructor;
 
 public interface InstructorDao extends JpaRepository <Instructor, Long> {
 	
-	@Query ( value ="select i from Instructor as i where i.firstName like %:firstName% or i.lastName like %:firstName%")
+	@Query (value ="select i from Instructor as i where i.firstName like %:firstName% or i.lastName like %:firstName%")
 	List <Instructor> findInstructorByfirstName (@Param ("firstName") String firstName);
 	
-	@Query (nativeQuery=true, value = "select i from Instructor as i where i.user.userEmail =:userEmail ")
+	// select * from Instructor as i where i.user.userEmail =:userEmail
+	// select * from courses as c where c.course_id in (select e.course_id from enrolled_in as e where e.student_id = :studentId)"
+	
+	@Query (value = "select i from Instructor as i where i.user.userEmail =:userEmail")
 	Instructor findInstructByuserEmail (@Param ("userEmail") String userEmail);
 
 }

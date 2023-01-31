@@ -10,6 +10,8 @@ public interface UserService {
 	
 	void assignRoleToUser (String userEmail, String roleName);
 	
+	boolean doesUserHasRole(String roleName);
+	
 	
 
 }

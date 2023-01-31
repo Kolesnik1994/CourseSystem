@@ -1,5 +1,6 @@
 package spring.service.impl;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService{
 		User user = loadUserByuserEmail (userEmail);
 		if (user != null) throw new RuntimeException("User with email :" + userEmail + "already exist") ;
 		String encode = passwordEncoder.encode(userPassword);
-		return userDao.save(new User (userEmail, userPassword));
+		return userDao.save(new User (userEmail, encode));
 	}
 
 	@Override
@@ -44,6 +45,12 @@ public class UserServiceImpl implements UserService{
 		User user = loadUserByuserEmail (userEmail);
 		Role role = roleDao.findByroleName(roleName);
 		user.assignRoleToUser(role);
-		
+		 
+	}
+
+	@Override
+	public boolean doesUserHasRole(String roleName) {
+		return SecurityContextHolder.getContext().getAuthentication().getAuthorities()
+				.stream().anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(roleName));
 	}
 }

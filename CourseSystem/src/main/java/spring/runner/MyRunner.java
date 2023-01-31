@@ -51,7 +51,7 @@ public class MyRunner implements CommandLineRunner{
 				roleService.createRole(STUDENT);
 				
 				userService.assignRoleToUser(user.getUserEmail(), ADMIN);
-				userService.assignRoleToUser(user.getUserEmail(), INSTRUCTOR);
+			//	userService.assignRoleToUser(user.getUserEmail(), INSTRUCTOR);
 				userService.assignRoleToUser(user1.getUserEmail(), STUDENT);
 				
 				Instructor instructor1 = instructorService.createInstructor("Vanya", "Tutkins", "Mentor", "egor@gmail.com", "pass1");
@@ -67,7 +67,6 @@ public class MyRunner implements CommandLineRunner{
 				courseService.assignStudentToCourse(course2.getCourseId(), student2.getStudentId());
 		
 			};
-		
 		
 		
 	}

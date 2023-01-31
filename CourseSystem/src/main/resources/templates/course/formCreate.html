@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Course Service</title>
@@ -103,10 +103,17 @@
 
 			<div class="mb-3 mt-3">
 				<label class="form-label"> Instructor: </label>
-				<select th:field="${course.instructor}" name="instructor"
+				<select sec:authorize="hasAuthority('Admin')" th:field="${course.instructor}" name="instructor"
 					class="form-select">
 
 					<option th:each="instructor:${listInstructor}"
+						th:text="${instructor.getFirstName()} + ' ' +${instructor.getLastName()}"
+						th:value="${instructor.getInstructorId()}"></option>
+				</select>
+				
+				<select sec:authorize="!hasAuthority('Admin') && hasAuthority('Instructor')" th:field="${course.instructor}" name="instructor"
+					class="form-select">
+					<option th:each="instructor:${currentInstructor}"
 						th:text="${instructor.getFirstName()} + ' ' +${instructor.getLastName()}"
 						th:value="${instructor.getInstructorId()}"></option>
 				</select>
