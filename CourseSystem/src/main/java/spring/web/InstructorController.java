@@ -1,7 +1,10 @@
 package spring.web;
 
 
+import java.security.Principal;
 import java.util.List;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +33,7 @@ public class InstructorController {
 
 
 	@GetMapping ("/index")
+	@PreAuthorize ("hasAuthority ('Admin')")
 	public String getListInstructors (Model model, @RequestParam(name="keyword", defaultValue ="") String keyword) {
 		List<Instructor> instructors = instructorService.findInstructorsByName(keyword);
 		model.addAttribute(	"listInstructors", instructors);
@@ -39,6 +43,7 @@ public class InstructorController {
 	}
 	
 	@GetMapping ("/delete")
+	@PreAuthorize ("hasAuthority ('Admin')")
 	public String deleteInstructors (Long instructorId, String keyword) {
 		instructorService.removeInstructor(instructorId);
 		return "redirect:/instructors/index?keyword=" + keyword;
@@ -46,19 +51,22 @@ public class InstructorController {
 	}
 	
 	@GetMapping ("/formUpdate")
-	public String updateInstructor (Model model, Long instructorId) {
-		Instructor instructor = instructorService.loadInstructorById(instructorId);
+	@PreAuthorize ("hasAuthority ('Instructor')")
+	public String updateInstructor (Model model, Principal principal) {
+		Instructor instructor = instructorService.loadInstrucotrByEmail(principal.getName());
 		model.addAttribute("instructor", instructor);
 		return "instractor/updateInstructor";
 	}
 	
 	@PostMapping ("/update")
+	@PreAuthorize ("hasAuthority ('Instructor')")
 	public String update (Instructor instructor) {
 		instructorService.updateInstructor(instructor);
-		return "redirect:/instructors/index";
+		return "redirect:/courses/index/instructor";
 	}
 	
 	@GetMapping ("/formCreate")
+	@PreAuthorize ("hasAuthority ('Admin')")
 	public String createInstructor(Model model) {
 		model.addAttribute("instructor", new Instructor());
 		return "instractor/instructorCreate";

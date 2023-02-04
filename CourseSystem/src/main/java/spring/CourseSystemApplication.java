@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
-import org.thymeleaf.spring6.SpringTemplateEngine;
 
 @EntityScan ("spring.entity")
 @SpringBootApplication
@@ -26,10 +24,7 @@ public class CourseSystemApplication {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	
-
   }
-	
-
 	}
 		
 

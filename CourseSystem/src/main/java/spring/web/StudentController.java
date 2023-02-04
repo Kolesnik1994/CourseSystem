@@ -1,7 +1,9 @@
 package spring.web;
 
+import java.security.Principal;
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +29,7 @@ public class StudentController {
 	}
 
 	@GetMapping ("/index")
+	@PreAuthorize ("hasAuthority ('Admin')")
 	public String getStudents (Model model, @RequestParam (name="keyword", defaultValue ="") String keyword) {
 		List <Student> students = studentService.findStudentByName(keyword);
 		List <Student> students2 = studentService.fetchStudent();
@@ -38,27 +41,32 @@ public class StudentController {
 	}
 	
 	@GetMapping ("/delete")
+	@PreAuthorize ("hasAuthority ('Admin')")
 	public String deleteStudent (Long studentId, String keyword) {
 		studentService.removeStudent(studentId);
-		return "redirect:/students/index?keyword" + keyword;
+		return "redirect:/students/index?keyword=" + keyword;
 	}
 	
+	
 	@GetMapping ("/formUpdate")
-	public String updateStudent (Model model, Long studentId) {
-		Student student = studentService.loadStudentById(studentId);
+	@PreAuthorize ("hasAuthority ('Student')")
+	public String updateStudent (Model model, Principal principal) {
+		Student student = studentService.loadStudentByEmail(principal.getName());
 		model.addAttribute("student", student);
 		return "students/studentUpdate";
 			
 	}
 	
 	@PostMapping ("/update")
+	@PreAuthorize ("hasAuthority ('Student')")
      public String update (Student student) {
 		studentService.updateStudent(student);
-		return  "redirect:/students/index";
+		return  "redirect:/courses/index/student";
    
 	}  
 	
 	@GetMapping("/formCreate")
+	@PreAuthorize ("hasAuthority('Admin')")
 	public String formStudents (Model model) {
 		model.addAttribute("student", new Student());
 		return "students/studentsCreate";
@@ -66,6 +74,7 @@ public class StudentController {
 	}
 	
     @PostMapping ("/save")
+    @PreAuthorize ("hasAuthority ('Admin')")
 	 public String save (Student student, BindingResult binding) {
     	User user = userService.loadUserByuserEmail(student.getUser().getUserEmail());
     	
@@ -74,7 +83,7 @@ public class StudentController {
     	if (binding.hasErrors()) return "students/studentsCreate";
     	studentService.createStudent(student.getFirstName(), student.getLastName(), student.getLevel(), student.getUser().getUserEmail(), 
     	student.getUser().getUserPassword());
-    	return "redirect://students/index";
+    	return "redirect:/students/index";
 }
 
 }

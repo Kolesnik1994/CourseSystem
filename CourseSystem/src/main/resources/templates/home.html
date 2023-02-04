@@ -29,15 +29,15 @@
 							</li>
 							<li>
 								<a class="dropdown -item" th:href="@{/courses/index/instructor}" sec:authorize="hasAuthority('Instructor')">
-									Search </a>
+									Instructor Courses </a>
 							</li>
 							<li>
 								<a class="dropdown -item" th:href="@{/courses/index/student}" sec:authorize="hasAuthority('Student')">
-									StudentCourses </a>
+									Student Courses </a>
 							</li>
 							<li>
 								<a class="dropdown -item" th:href="@{/courses/formCreate}" sec:authorize="hasAnyAuthority('Admin', 'Instructor')">
-									Instructor Course </a>
+									New Courses </a>
 							</li>
 						</ul>
 					</li>
@@ -59,7 +59,7 @@
 					</li>
 
 
-					<li class="nav-item dropdown" sec:authorize="isAuthenticated() && hasAuthority('Student')">
+					<li class="nav-item dropdown" sec:authorize="isAuthenticated() && hasAuthority('Admin')">
 						<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-bs-toggle="dropdown"> Students </a>
 						<ul class="dropdown-menu">
@@ -83,6 +83,12 @@
 							<span sec:authentication="name"> </span>
 						</a>
 						<ul class="dropdown-menu">
+						<li sec:authorize ="hasAuthority ('Instructor')"> 
+						<a class ="dropdown-item" th:href ="@{/instructors/formUpdate}"> Update Profile</a>
+						</li>
+						<li sec:authorize ="hasAuthority ('Student')"> 
+						<a class ="dropdown-item" th:href ="@{/students/formUpdate}"> Update Profile</a>
+						</li>
 							<li>
 								<a class="dropdown-item" th:href="@{/logout}"> Logout </a>
 							</li>

@@ -54,8 +54,10 @@ public class MyRunner implements CommandLineRunner{
 			//	userService.assignRoleToUser(user.getUserEmail(), INSTRUCTOR);
 				userService.assignRoleToUser(user1.getUserEmail(), STUDENT);
 				
+				
 				Instructor instructor1 = instructorService.createInstructor("Vanya", "Tutkins", "Mentor", "egor@gmail.com", "pass1");
 				Instructor instructor2 = instructorService.createInstructor("Vova", "Pupkin", "Senior", "vova@gmail.com", "pass2");
+			
 				
 				Student student1 = studentService.createStudent("Amir", "Ramitovich", "Java", "student@mail.com", "pass1");
 				Student student2 = studentService.createStudent("Rahim", "Pantiks", "PHP", "sdutens2@gmail.com", "pass2");

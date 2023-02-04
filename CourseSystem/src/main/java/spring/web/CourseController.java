@@ -77,7 +77,7 @@ public class CourseController {
 	
 	
 	@PostMapping ("/save")
-	@PreAuthorize ("hasAnyAuthority ('Admin', 'Instructor')")
+	@PreAuthorize ("hasAnyAuthority ('Admin','Instructor')")
 	public String saveCourse (Course course) {
 		courseService.createOrUpdateCourse(course);
 		return userService.doesUserHasRole("Instructor") ? "redirect:/courses/index/instructor" : "redirect:/courses/index";
