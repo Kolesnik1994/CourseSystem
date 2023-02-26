@@ -19,6 +19,10 @@ import spring.entity.User;
 import spring.service.InstructorService;
 import spring.service.UserService;
 
+/**
+ * Controller class
+ * @author VLadislav K
+ */
 @Controller
 @RequestMapping ("/instructors")
 public class InstructorController {
@@ -31,7 +35,9 @@ public class InstructorController {
 		this.userService = userService;
 	}
 
-
+    /**
+     * user that have authority ADMIN can see list of instructors and search instructor by name @RequestParam   
+     */
 	@GetMapping ("/index")
 	@PreAuthorize ("hasAuthority ('Admin')")
 	public String getListInstructors (Model model, @RequestParam(name="keyword", defaultValue ="") String keyword) {
@@ -42,6 +48,9 @@ public class InstructorController {
 		
 	}
 	
+	/**
+     * user that have authority ADMIN can delete the instructor from list of instructors   
+     */
 	@GetMapping ("/delete")
 	@PreAuthorize ("hasAuthority ('Admin')")
 	public String deleteInstructors (Long instructorId, String keyword) {
@@ -50,6 +59,9 @@ public class InstructorController {
 		
 	}
 	
+	/**
+     * user that have authority INSTRUCTOR can load update form.html that consist information about instructor  
+     */
 	@GetMapping ("/formUpdate")
 	@PreAuthorize ("hasAuthority ('Instructor')")
 	public String updateInstructor (Model model, Principal principal) {
@@ -58,6 +70,9 @@ public class InstructorController {
 		return "instractor/updateInstructor";
 	}
 	
+	/**
+     * user that have authority INSTRUCTOR can update information about yourself and see new information on the courses pages  
+     */
 	@PostMapping ("/update")
 	@PreAuthorize ("hasAuthority ('Instructor')")
 	public String update (Instructor instructor) {
@@ -65,6 +80,9 @@ public class InstructorController {
 		return "redirect:/courses/index/instructor";
 	}
 	
+	/**
+     * user that have authority ADMIN can load page that give form for create new Instructor 
+     */
 	@GetMapping ("/formCreate")
 	@PreAuthorize ("hasAuthority ('Admin')")
 	public String createInstructor(Model model) {
@@ -73,6 +91,9 @@ public class InstructorController {
 	
 	}
 	
+	/**
+     * user that have authority ADMIN can create new Instructor 
+     */
 	@PostMapping ("/save")
 	public String saves (@Valid Instructor instructor, BindingResult bindingResult) {
 	User user = userService.loadUserByuserEmail(instructor.getUser().getUserEmail());

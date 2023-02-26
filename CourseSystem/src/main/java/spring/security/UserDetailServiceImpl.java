@@ -13,6 +13,11 @@ import org.springframework.stereotype.Service;
 import spring.entity.User;
 import spring.service.UserService;
 
+
+/**
+ * Service class that retrieve user-related data for authenticating user with email and password
+ * @author VLadislav K
+ */
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 	

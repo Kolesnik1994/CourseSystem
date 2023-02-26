@@ -12,7 +12,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import spring.dao.RoleDao;
 /**
- * @author Vladislav Kolesnyk
+ * Role Service Test
+ * @author VLadislav K
  */
 
 @ExtendWith (MockitoExtension.class)
@@ -24,9 +25,6 @@ class RoleServiceImplTest {
 	@Mock
     private RoleDao roleDao;
 
-	/**load role by name
-	 * testing that Mock RoleDao find Role By Name (****) method -> findByRoleName()
-	 */
 	@Test
 	void testLoadRolebyName() {
 		roleServiceIml.loadRolebyName("Admin");

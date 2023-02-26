@@ -13,9 +13,14 @@ import org.springframework.test.context.jdbc.Sql;
 import spring.entity.Student;
 import spring.service.impl.AbstractTest;
 
+/*
+ * Data JPA Test for Student DAO layer, Run with Docker
+ * If you will run test in another device, Change SQL scripts file path 
+ * @Author VLadislav K
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase (replace = AutoConfigureTestDatabase.Replace.NONE)
-@Sql (scripts = {"C:\\Users\\Java\\eclipse-workspace\\CourseSystem\\db\\clear.sql", "C:\\Users\\Java\\eclipse-workspace\\CourseSystem\\db\\insert.sql"})
+@Sql (scripts = {"file:C:\\Users\\Java\\git\\CourseSystem\\CourseSystem\\src\\test\\resources\\db\\clear.sql", "file:C:\\Users\\Java\\git\\CourseSystem\\CourseSystem\\src\\test\\resources\\db\\insert.sql"})
 public class StudentDaoTest extends AbstractTest {
 		
 	@Autowired
@@ -23,23 +28,29 @@ public class StudentDaoTest extends AbstractTest {
 	
 	@Test
 	void testFindStudentsByName () {
-		List <Student> student = studentDao.findByfirstName("John");
-		Long expected = 2L;
+		List <Student> student = studentDao.findByfirstName("Amir");
+		Long expected = 1L;
 		
 		assertEquals(expected, student.get(0).getStudentId());
 		
 	}
 	
 	@Test
-	void testfindStudentByEmail () {
+	void testFindStudentsByNameSize () {
+		List <Student> student = studentDao.findByfirstName("Amir");
+		assertEquals(1, student.size());
 		
+	}
+	
+	@Test
+	void testFindStudentByEmail () {
 		Student student = new Student();
 		student.setStudentId(1L);
-		student.setFirstName("Paul");
-		student.setLastName("Majaha");
-		student.setLevel("Pro");
+		student.setFirstName("Amir");
+		student.setLastName("Ramitovich");
+		student.setLevel("Java");
 		
-		Student student1 = studentDao.findStudentByuserEmail("user@gmail.com");
+		Student student1 = studentDao.findStudentByuserEmail("student@mail.com");
 		
 		assertEquals(student, student1);
 		

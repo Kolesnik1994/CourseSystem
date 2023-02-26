@@ -5,6 +5,12 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MySQLContainer;
 
+
+/**
+ * MySQL Test that check connect to our database in container use our property 
+ * @author VLadislav K
+ */
+
 public class AbstractTest {
 	
 	private static MySQLContainer container = new MySQLContainer<>("mysql:latest")

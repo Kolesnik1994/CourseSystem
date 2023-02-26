@@ -15,6 +15,10 @@ import spring.entity.Instructor;
 import spring.entity.Student;
 import spring.service.CourseService;
 
+/**
+ * Course Service class that implement CourseSerivce interface and consist service logic
+ * @author VLadislav K
+ */
 @Service
 @Transactional // help avoid LazyInitializationException
 public class CourseServiceImpl implements CourseService {

@@ -15,6 +15,11 @@ import spring.service.CourseService;
 import spring.service.InstructorService;
 import spring.service.UserService;
 
+/**
+ * Instructor Service class that implement InstructorSerivce interface and consist service logic
+ * @author VLadislav K
+ */
+
 @Service
 @Transactional
 public class InstructorServiceImpl implements InstructorService {

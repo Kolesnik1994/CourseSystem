@@ -5,11 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.any;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,20 +14,16 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import jakarta.persistence.EntityNotFoundException;
-import spring.dao.CourseDao;
 import spring.dao.StudentDao;
 import spring.entity.Course;
 import spring.entity.Student;
 import spring.entity.User;
-import spring.service.CourseService;
-import spring.service.StudentService;
 import spring.service.UserService;
 
 /**
- * Junit Test
- * @author Vladislav Kolesnyk
+ * Testing Student Service layer
+ * @author VLadislav K
  */
-
 @ExtendWith(MockitoExtension.class)
 public class StudentServiceImplTest {
 	
@@ -42,14 +35,6 @@ public class StudentServiceImplTest {
 	
 	@Mock
 	private UserService userService;
-	
-	
-	/**
-	 * create Student entity and set Id
-	 * find Student entity by ID with Mock studentDao with any parameter -> method findById(), and return Optional student 
-	 * call service method, that allows find Student by Id, method -> loadStudentById();
-	 * equals both variables by method asserEquals(Object expected, Object actual)
-	 */
 	
 	@Test
 	void testLoadStudentById() {
@@ -63,10 +48,8 @@ public class StudentServiceImplTest {
 		
 	}
 
-	
 	/**
 	 * check if our service layer with his method throws the correct error 
-	 * throw Exception -> EntityNotFoundException by executable method -> loadStudentById()
 	 */
 		
 	@Test
@@ -76,7 +59,6 @@ public class StudentServiceImplTest {
 	}
 
 	/**
-	 * find student by name in Service Layer
 	 * verify if Mock StudentDao find student by name, method -> findByfirstName();
 	 */
 	
@@ -101,33 +83,18 @@ public class StudentServiceImplTest {
 		
 	}
 
-	/**
-	 * create entity and set email and password
-	 * use Mock StudentService to create user and use mockito static method -> to return object user
-	 * create Student is Service layer
-	 * verify if Mock studentDao execute method -> save();
-	 */
-	
-	
 	@Test
 	void testCreateStudent() {
 		User user = new User();
 		user.setUserEmail("user@gmail.com");
 		user.setUserPassword("pass");
 		
-		 when(userService.createUser(any(), any())).thenReturn(user);
-		 studentService.createStudent("Lucky", "God's", "Sun", "user@gmail.com", "pass1");
-		 verify(studentDao).save(any());
+		when(userService.createUser(any(), any())).thenReturn(user);
+		studentService.createStudent("Lucky", "God's", "Sun", "user@gmail.com", "pass1");
+		verify(studentDao).save(any());
 	
 	}
   
-	/**
-	 * create Student entity
-	 * set Student id
-	 * update Student in service layer 
-	 * verify if Mock StudentDao called method -> save() 
-	 */
-	
 	@Test
 	void testUpdateStudent() {
 		Student student = new Student();
@@ -138,26 +105,12 @@ public class StudentServiceImplTest {
 		
 	}
 
-	/**
-	 * fetch all student in service layer
-	 * verify if Mock StudentDao fetch all students 1 times
-	 */
 	@Test
 	void testFetchStudent() {
 		studentService.fetchStudent();
 		verify(studentDao, times(1)).findAll();
 
 	}
-
-	
-	/**
-	 * create entity Student and set Id
-	 * create entity Course and set Id
-	 * get course from student and add course
-	 * find student by id -> return student object
-	 * remove student in Service layer
-	 * verify if Mock studentDao delete student by id -> deleteById()
-	 */
 	
 	@Test
 	void testRemoveStudent() {

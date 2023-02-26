@@ -8,6 +8,10 @@ import org.springframework.data.repository.query.Param;
 
 import spring.entity.Student;
 
+/**
+ * Student DAO layer
+ * @author VLadislav K
+ */
 public interface StudentDao extends JpaRepository <Student, Long> {
 	
 	@Query (value ="select s from Student as s where s.firstName like %:firstName% or s.lastName like %:firstName%")

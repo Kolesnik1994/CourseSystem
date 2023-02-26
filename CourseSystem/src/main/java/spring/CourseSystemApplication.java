@@ -9,6 +9,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * main class that run application
+ * @author VLadislav K
+ */
 @EntityScan ("spring.entity")
 @SpringBootApplication
 @EnableMethodSecurity  (prePostEnabled=true, securedEnabled=true )

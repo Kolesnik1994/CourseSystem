@@ -14,6 +14,10 @@ import spring.entity.User;
 import spring.service.StudentService;
 import spring.service.UserService;
 
+/**
+ * Student Service class that implement StudentSerivce interface and consist service logic
+ * @author VLadislav K
+ */
 @Service
 @Transactional
 public class StudentServiceImpl implements StudentService{

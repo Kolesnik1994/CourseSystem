@@ -4,6 +4,10 @@ import java.util.List;
 
 import spring.entity.Student;
 
+/*
+ * Student Interface that can used for different purpose (testing, service layer and other)
+ * @Author VLadislav K
+ */
 public interface StudentService {
 	
 	Student loadStudentById (Long id);

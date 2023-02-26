@@ -13,9 +13,14 @@ import org.springframework.test.context.jdbc.Sql;
 import spring.entity.Course;
 import spring.service.impl.AbstractTest;
 
+/*
+ * Data JPA Test for Course DAO layer, Run with Docker!
+ * If you will run test in another device, Change SQL scripts file path 
+ * @Author VLadislav K
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase (replace = AutoConfigureTestDatabase.Replace.NONE)
-@Sql (scripts = {"C:\\Users\\Java\\eclipse-workspace\\CourseSystem\\db\\clear.sql", "C:\\Users\\Java\\eclipse-workspace\\CourseSystem\\db\\insert.sql	"})
+@Sql (scripts = {"file:C:\\Users\\Java\\git\\CourseSystem\\CourseSystem\\src\\test\\resources\\db\\clear.sql", "file:C:\\Users\\Java\\git\\CourseSystem\\CourseSystem\\src\\test\\resources\\db\\insert.sql"})
 class CourseDaoTest extends AbstractTest{
 	
 	@Autowired
@@ -23,18 +28,15 @@ class CourseDaoTest extends AbstractTest{
 	
 	@Test
     void findCoursesByCourseNameContains() {
-		List <Course> courses = courseDao.findCourseBycourseName("Rubby");
-		int expectedResult = 2;
-		assertEquals(expectedResult, courses.size());
-		
+		List <Course> courses = courseDao.findCourseBycourseName("Ruby");
+		int expectedResult = 1;
+		assertEquals(expectedResult, courses.size());		
 }
 	
 	@Test
 	void getCoursesByStudentId () {
 		List <Course> courses = courseDao.getCourseBystudentId(1L);
-		int expectedResult = 1;
-		assertEquals(expectedResult, courses);
-		
+		int expected = 1;
+		assertEquals(expected, courses.size());	
 	}
-	
 }

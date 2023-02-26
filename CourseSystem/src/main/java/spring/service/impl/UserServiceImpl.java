@@ -11,6 +11,10 @@ import spring.entity.Role;
 import spring.entity.User;
 import spring.service.UserService;
 
+/**
+ * User Service class that implement UserSerivce interface and consist service logic
+ * @author VLadislav K
+ */
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{

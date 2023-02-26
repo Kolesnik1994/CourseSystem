@@ -4,6 +4,11 @@ import java.util.List;
 
 import spring.entity.Instructor;
 
+/*
+ * Course Interface that can used for different purpose (testing, service layer and other)
+ * @Author VLadislav K
+ */
+
 public interface InstructorService {
 	
 	Instructor loadInstructorById (Long instructorId);

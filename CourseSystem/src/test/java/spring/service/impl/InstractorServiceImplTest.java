@@ -1,6 +1,5 @@
 package spring.service.impl;
 
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -11,7 +10,6 @@ import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -24,9 +22,12 @@ import spring.entity.Course;
 import spring.entity.Instructor;
 import spring.entity.User;
 import spring.service.CourseService;
-import spring.service.InstructorService;
 import spring.service.UserService;
 
+/**
+ * Testing Instructor Service Layer
+ * @author VLadislav L
+ */
 @ExtendWith(MockitoExtension.class)
 public class InstractorServiceImplTest {
 	
@@ -125,23 +126,4 @@ public class InstractorServiceImplTest {
 	
 	}
 		
-		
-		/**
-		 * Instructor instruct = new Instructor();
-		instruct.setInstructorId(1L);
-		
-		Course course = new Course();
-		course.setCourseId(1L);
-		
-		instruct.getCourses().add(course);
-		
-		when(instructorDao.findById(any())).thenReturn(Optional.of(instruct));
-		instructorServ.removeInstructor(1L);
-		
-		verify(courseServ).removeCourse(any());
-		verify(instructorDao).deleteById(any());
-	}
-		 */
-		
-
 }

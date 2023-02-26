@@ -21,6 +21,10 @@ import spring.entity.Course;
 import spring.entity.Instructor;
 import spring.entity.Student;
 
+/**
+ * Course Service Layer Testing
+ * @author VLadislav K
+ */
 @ExtendWith(MockitoExtension.class)
 public class CourseServiceImplTest {
 	

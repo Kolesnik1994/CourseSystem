@@ -14,10 +14,14 @@ import org.springframework.test.context.jdbc.Sql;
 import spring.entity.Instructor;
 import spring.service.impl.AbstractTest;
 
+/*
+ * Data JPA Test for Instructor DAO layer, Run with Docker
+ * If you will run test in another device, Change SQL scripts file path 
+ * @Author VLadislav K
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase	(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Sql(scripts = {"C:\\Users\\Java\\eclipse-workspace\\CourseSystem\\db\\clear.sql", "C:\\Users\\Java\\eclipse-workspace\\CourseSystem\\db\\insert.sql"})
-
+@Sql (scripts = {"file:C:\\Users\\Java\\git\\CourseSystem\\CourseSystem\\src\\test\\resources\\db\\clear.sql", "file:C:\\Users\\Java\\git\\CourseSystem\\CourseSystem\\src\\test\\resources\\db\\insert.sql"})
 public class InstructorDaoTest extends AbstractTest{
 	
 	@Autowired
@@ -25,9 +29,9 @@ public class InstructorDaoTest extends AbstractTest{
 	
 	@Test
 	void testFindInstructorsByName() {
-		List <Instructor> instructors = instructorDao.findInstructorByfirstName("steve");
+		List <Instructor> instructors = instructorDao.findInstructorByfirstName("Vanya");
 		int expectedValue = 1;
-		assertEquals(expectedValue, instructors);
+		assertEquals(expectedValue, instructors.size());	
 	}
 	
 	
@@ -35,21 +39,20 @@ public class InstructorDaoTest extends AbstractTest{
 	void testFindInstructorsByEmail() {
 		Instructor expectedInstructor = new Instructor();
 		expectedInstructor.setInstructorId(1l);
-		expectedInstructor.setFirstName("Jord");
-		expectedInstructor.setLastName("Kush");
-		expectedInstructor.setInstructorSummary("Method");
+		expectedInstructor.setFirstName("Vanya");
+		expectedInstructor.setLastName("Tutkins");
+		expectedInstructor.setInstructorSummary("Mentor");
 		
-		
-		Instructor instructor = instructorDao.findInstructByuserEmail("user@gmail.com");
+		Instructor instructor = instructorDao.findInstructByuserEmail("egor@gmail.com");
 		
 		assertEquals(expectedInstructor, instructor);
 	}
 	
 	@Test
 	void testFindInstructorByNotExistingEmail() {
-		Instructor instructor = instructorDao.findInstructByuserEmail("user@gmail.com");
+		Instructor instructor = instructorDao.findInstructByuserEmail("test@gmail.com");
 		assertNull(instructor);
-	
+  }
+}
 
-}
-}
+

@@ -7,6 +7,10 @@ import spring.dao.RoleDao;
 import spring.entity.Role;
 import spring.service.RoleService;
 
+/**
+ * Role Service class that implement RoleSerivce interface and consist service logic
+ * @author VLadislav K
+ */
 @Service
 @Transactional
 public class RoleServiceIml implements RoleService {

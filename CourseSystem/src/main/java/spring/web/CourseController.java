@@ -23,8 +23,8 @@ import spring.service.InstructorService;
 import spring.service.UserService;
 
 /**
- * Controller class
- * @author Vladislav Kolesnyk
+ * Controller class 
+ * @author VLadislav Kolesnyk
  */
 @Controller
 @RequestMapping ("/courses")
@@ -40,7 +40,9 @@ public class CourseController {
 		this.userService = userService;
 	}
 
-	
+	/**
+	 * Get list of Student for user that have authority ADMIN, also you can search course @RequestParam 
+	 */
 	@GetMapping ("/index")
 	@PreAuthorize ("hasAuthority ('Admin')")
 	public String findCourse (Model model, @RequestParam (name="keyword", defaultValue = "") String keyword ) {
@@ -52,7 +54,9 @@ public class CourseController {
 		return "course/courses";	
 	}
 	
-	
+	/**
+	 *  user that have authority ADMIN can delete course  
+	 */
 	@GetMapping ("/delete")
 	@PreAuthorize ("hasAuthority ('Admin')")
 	public String deleteCourse (Long courseId, String keyword) {
@@ -60,7 +64,10 @@ public class CourseController {
     return "redirect:/courses/index?keyword="+keyword;
 	}
 	
-	
+	/**
+	 *  user that have authority ADMIN & INSTRUCTOR can update information about course
+	 *  !INSTRUCOTR can'not change information about instructor mapped to course   
+	 */
 	@GetMapping ("/update")
 	@PreAuthorize ("hasAnyAuthority ('Admin','Instructor')")
 	public String updateCourse (Model model, Long courseId, Principal principal) {
@@ -75,7 +82,9 @@ public class CourseController {
 		return "course/update";
 	}
 	
-	
+	/**
+	 *  user that have authority ADMIN & INSTRUCTOR can save new changes about courses  
+	 */
 	@PostMapping ("/save")
 	@PreAuthorize ("hasAnyAuthority ('Admin','Instructor')")
 	public String saveCourse (Course course) {
@@ -83,7 +92,9 @@ public class CourseController {
 		return userService.doesUserHasRole("Instructor") ? "redirect:/courses/index/instructor" : "redirect:/courses/index";
 	}
 	
-	
+	/**
+	 *  user that have authority ADMIN & INSTRUCTOR can create new Course
+	 */
 	@GetMapping ("/formCreate")
 	@PreAuthorize ("hasAnyAuthority ( 'Admin' , 'Instructor')")
 	public String formCourses (Model model, Principal principal) {
@@ -97,7 +108,9 @@ public class CourseController {
 		return "course/formCreate";	
 	}
 	
-	
+	/**
+	 *  user that have authority Student can see yourself courses, and enroll for new course
+	 */
 	@GetMapping ("/index/student")
 	@PreAuthorize("hasAuthority ('Student')")
 	public String coursesForStudent (Model model, Principal principal) {
@@ -111,7 +124,9 @@ public class CourseController {
 		return "course/student";
 	}
 	
-	
+	/**
+	 *  user that have authority Student can enroll for new course
+	 */
 	@GetMapping ("/enroll")
 	@PreAuthorize("hasAuthority ('Student')")
 	public String enrollStudent(Long courseId, Principal principal) {
@@ -122,7 +137,9 @@ public class CourseController {
 		
 	}
 	
-	
+	/**
+	 *  user that have authority Instructor can see courses that he must teaches
+	 */
 	@GetMapping ("/index/instructor")
 	@PreAuthorize ("hasAuthority ('Instructor')")
 	public String coursesForInstructor(Model model, Principal principal) {
@@ -135,7 +152,9 @@ public class CourseController {
 		
 	}
 	
-	
+   /**
+    * user that have authority ADMIN can see information about instructor's courses and update it
+    */
 	@GetMapping ("/instructor")
 	@PreAuthorize ("hasAuthority ('Admin')")
 	public String coursesByInstructorId (Model model, Long instructorId) { 

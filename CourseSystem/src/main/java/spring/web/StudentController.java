@@ -17,6 +17,10 @@ import spring.entity.User;
 import spring.service.StudentService;
 import spring.service.UserService;
 
+/**
+ * Controller class
+ * @author VLadislav K
+ */
 @Controller
 @RequestMapping("/students")
 public class StudentController {
@@ -28,6 +32,9 @@ public class StudentController {
 		this.userService = userService;
 	}
 
+	/**
+     * user that have authority ADMIN can see list of students and search the by keyword @RequestParam   
+     */
 	@GetMapping ("/index")
 	@PreAuthorize ("hasAuthority ('Admin')")
 	public String getStudents (Model model, @RequestParam (name="keyword", defaultValue ="") String keyword) {
@@ -40,6 +47,9 @@ public class StudentController {
 			
 	}
 	
+	/**
+     * user that have authority ADMIN can remove students from list of students   
+     */
 	@GetMapping ("/delete")
 	@PreAuthorize ("hasAuthority ('Admin')")
 	public String deleteStudent (Long studentId, String keyword) {
@@ -47,7 +57,9 @@ public class StudentController {
 		return "redirect:/students/index?keyword=" + keyword;
 	}
 	
-	
+	/**
+     * user that have authority STUDENT can load update form.html 
+     */
 	@GetMapping ("/formUpdate")
 	@PreAuthorize ("hasAuthority ('Student')")
 	public String updateStudent (Model model, Principal principal) {
@@ -57,6 +69,9 @@ public class StudentController {
 			
 	}
 	
+	/**
+     * user that have authority STUDENT can update information about yourself   
+     */
 	@PostMapping ("/update")
 	@PreAuthorize ("hasAuthority ('Student')")
      public String update (Student student) {
@@ -65,6 +80,9 @@ public class StudentController {
    
 	}  
 	
+	/**
+     * user that have authority ADMIN can load html.form for create new Student   
+     */
 	@GetMapping("/formCreate")
 	@PreAuthorize ("hasAuthority('Admin')")
 	public String formStudents (Model model) {
@@ -73,6 +91,9 @@ public class StudentController {
 				
 	}
 	
+	/**
+     * user that have authority ADMIN can create new Student   
+     */
     @PostMapping ("/save")
     @PreAuthorize ("hasAuthority ('Admin')")
 	 public String save (Student student, BindingResult binding) {

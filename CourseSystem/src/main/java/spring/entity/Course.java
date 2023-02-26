@@ -18,6 +18,11 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+/**
+ * Simple POJO class, that represent entity "Course"
+ * @author VLadislav K
+ */
+ 
 @Entity
 @Table (name = "courses")
 public class Course {

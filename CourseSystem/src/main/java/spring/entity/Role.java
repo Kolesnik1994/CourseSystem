@@ -14,6 +14,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+
+/**
+ * Simple POJO class, that represent entity "Role"
+ * @author VLadislav K
+ */
 @Entity
 @Table (name = "role")
 public class Role {

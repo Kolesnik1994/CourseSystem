@@ -15,6 +15,10 @@ import spring.service.RoleService;
 import spring.service.StudentService;
 import spring.service.UserService;
 
+/*
+ * POJO class that run with spring application 
+ * @Author VLadislav K
+ */
 @Component
 public class MyRunner implements CommandLineRunner{
 	
@@ -69,8 +73,7 @@ public class MyRunner implements CommandLineRunner{
 				courseService.assignStudentToCourse(course2.getCourseId(), student2.getStudentId());
 		
 			};
-		
-		
+	
 	}
 
 

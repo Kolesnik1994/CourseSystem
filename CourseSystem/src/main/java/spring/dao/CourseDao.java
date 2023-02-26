@@ -8,8 +8,11 @@ import org.springframework.data.repository.query.Param;
 
 import spring.entity.Course;
 
+/**
+ * Course DAO Layer
+ * @author VLadislav K 
+ */
 public interface CourseDao extends JpaRepository <Course, Long> {
-	
 	
 	List <Course> findCourseBycourseName (String keyword);
 	

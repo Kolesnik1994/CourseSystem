@@ -4,6 +4,10 @@ import java.util.List;
 
 import spring.entity.Course;
 
+/*
+ * Course Interface 
+ * @Author VLadislav K
+ */
 public interface CourseService {
 	
 	Course loadCourseBycourseId (Long courseId);

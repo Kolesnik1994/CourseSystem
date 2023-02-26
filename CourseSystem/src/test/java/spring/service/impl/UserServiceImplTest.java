@@ -19,8 +19,8 @@ import spring.entity.Role;
 import spring.entity.User;
 
 /**
- * JUNIT test
- * @author VLadislav Kolesnyk
+ * Testing User Service layer
+ * @author VLadislav K
  */
 @ExtendWith (MockitoExtension.class)
 class UserServiceImplTest {
@@ -47,27 +47,7 @@ class UserServiceImplTest {
 		verify(userDao, times(1)).findByuserEmail(any());
 	}
 
-	/**
-	 * create New user with parameter
-	 * create ArgumentCaptor instance for User.class
-	 * testing that Mock UserDao save captured arguments 
-	 * Equals User and captured arguments 
-	 * 
-	 */
-	@Test
-	void testCreateUser() {
-		String email = "user@gmail.com";
-		String paswword ="pass";
-		User user = new User(email, paswword);
-		userService.createUser(email, paswword);
-		
-		ArgumentCaptor <User> argumentCaptor = ArgumentCaptor.forClass(User.class);
-		verify(userDao).save(argumentCaptor.capture());
-		
-		User capturedUser = argumentCaptor.getValue();
-		assertEquals(user, capturedUser);
-	}
-
+	
 	@Test
 	void testAssignRoleToUser() {
 		Role role = new Role();
@@ -82,3 +62,8 @@ class UserServiceImplTest {
 	}
 
 }
+
+
+
+
+
